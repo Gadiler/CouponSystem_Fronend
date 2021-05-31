@@ -1,0 +1,21 @@
+<div >
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Coupons ID</th>
+            <th>Coupons Title</th>
+            <th>Coupons Price</th>
+        </tr>
+
+        <tr *ngFor="let c of companies">
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.password}}</td>
+            <td *ngFor="let coupon of c.coupons">{{coupon.id}}</td>
+            <td *ngFor="let coupon of c.coupons">{{coupon.title}}</td>
+            <td *ngFor="let coupon of c.coupons">{{coupon.price}}</td>
+        </tr>
+    </table>
+</div>

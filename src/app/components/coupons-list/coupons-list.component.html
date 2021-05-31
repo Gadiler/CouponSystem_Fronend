@@ -1,0 +1,28 @@
+<div>
+    <table>
+        <tr>
+            <th>Add to Cart</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+        <tr *ngFor="let p of coupons">
+            <td> <button (click)="addToCart(p);">Add to Cart</button></td>
+            <td>
+                <a routerLink="/coupon-details/{{p.id}}">{{p.title}}</a>
+            </td>
+            <td>{{p.description}}</td>
+            <td>{{p.startDate | date: 'dd MMMM yyyy'}}</td>
+            <td>{{p.endDate| date: 'dd MMMM yyyy'}}</td>
+            <td>{{p.amount}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <app-thumbnail imageSource="{{p.image}}"></app-thumbnail>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,31 @@
+<div>
+    <p>Select the Product to DELETE</p>
+    <table>
+        <tr>
+            <th> Delete </th>
+            <th> Title </th>
+            <th> Description </th>
+            <th> Start date </th>
+            <th> End date </th>
+            <th> Amount </th>
+            <th> Price </th>
+            <th> Image </th>
+        </tr>
+        <tr *ngFor="let p of coupons" name="{p.id}">
+            <!-- <td> <input type="checkbox" name="myCheckbox" value="checked" (change)="$event ? selection.toggle(row) : null"></td> -->
+            <td> <button (click)="deleteCoupon(p.id!);">Delete</button></td>
+           <td>
+                <a routerLink="/coupon-details/{{p.id}}">{{p.title}}</a>
+            </td>
+            <td>{{p.description}}</td>
+            <td>{{p.startDate | date: 'dd MMMM yyyy'}}</td>
+            <td>{{p.endDate| date: 'dd MMMM yyyy'}}</td>
+            <td>{{p.amount}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <app-thumbnail imageSource="{{p.image}}"></app-thumbnail>
+            </td>
+        <!-- </tr> -->
+    </table>
+    <!-- <button (click)="deleteCoupons();">Delete</button> -->
+</div>
