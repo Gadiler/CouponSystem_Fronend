@@ -1,0 +1,40 @@
+<ng-container *ngIf="getUserType()==='None'; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+    <h1> Coupon System Website </h1>
+</ng-template>
+<ng-template #elseTemplate>
+    <ng-container *ngIf="getUserType()==='Admin'; then thenTemplate2; else elseTemplate2"></ng-container>
+    <ng-template #thenTemplate2>
+        <h1> Admin View </h1>
+    </ng-template>
+    <ng-template #elseTemplate2>
+        <ng-container *ngIf="getUserType()==='Company'; then thenTemplate3; else elseTemplate3">
+        </ng-container>
+        <ng-template #thenTemplate3>
+            <h1> Company View </h1>
+        </ng-template>
+        <ng-template #elseTemplate3>
+            <h1> Customer View </h1>
+        </ng-template>
+
+    </ng-template>
+
+</ng-template>
+
+
+
+
+<div>
+
+    <nav>
+        <div class="login-logout">
+            <p *ngIf="getUserType()!=='None' "> You're connected as {{getUserType()}}</p>
+            &nbsp;
+            <button *ngIf="isLoggedIn()" class="in" routerLink='/login' routerLinkActive="router-link-active"
+                class="btn btn-primary">Login</button>
+            &nbsp;
+            <button *ngIf="isLoggedOut()" class="out" (click)="logout()" class="btn btn-primary">Logout</button>
+
+        </div>
+    </nav>
+</div>

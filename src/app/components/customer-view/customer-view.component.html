@@ -1,0 +1,33 @@
+<ul class="nav">
+    <li><a [ngClass]=" isCartView ? 'active' : 'inactive' " class="nav-link" (click)="isCartSelected()">My Cart 🛒</a>
+    </li>
+    &nbsp;
+    <li><a [ngClass]=" isCouponView ? 'active' : 'inactive' " class="nav-link" (click)="isCouponSelected()">My Coupons
+            🎟️</a></li>
+    &nbsp;
+    <li><a [ngClass]=" isHomeView ? 'active' : 'inactive' " class="nav-link" (click)="isHomeSelected()">Home 🏠</a></li>
+</ul>
+
+<br>
+
+<ng-container *ngIf="isCartView; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+    <app-cart [coupons]="coupons"></app-cart>
+</ng-template>
+<ng-template #elseTemplate>
+    <ng-container *ngIf="isCouponView; then thenTemplate2; else elseTemplate2"></ng-container>
+    <ng-template #thenTemplate2>
+        <app-coupons-list [coupons]=coupons></app-coupons-list>
+    </ng-template>
+    <ng-template #elseTemplate2>
+        <ng-container *ngIf="isHomeView; then thenTemplate3; else elseTemplate3"></ng-container>
+        <ng-template #thenTemplate3>
+            <app-home [coupons]=homePageCoupons></app-home>
+            <!-- <app-coupons-list [coupons]=homePageCoupons></app-coupons-list> -->
+
+        </ng-template>
+        <ng-template #elseTemplate3>
+
+        </ng-template>
+    </ng-template>
+</ng-template>

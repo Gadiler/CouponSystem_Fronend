@@ -1,0 +1,97 @@
+<form class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Form Name</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="title">Title</label>
+            <div class="col-md-5">
+                <input id="title" name="title" type="text" placeholder="Title" [(ngModel)]="coupon.title"
+                    class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="description">Description</label>
+            <div class="col-md-5">
+                <input id="description" name="description" type="text" placeholder="Description"
+                    [(ngModel)]="coupon.description" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="start">Start Date</label>
+            <div class="col-md-5">
+                <input id="start" name="start" type="text" placeholder="Start Date" [(ngModel)]="coupon.startDate"
+                    class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="endDate">Expired Date</label>
+            <div class="col-md-5">
+                <input id="endDate" name="endDate" type="text" placeholder="Expired Date" [(ngModel)]="coupon.endDate"
+                    class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="amout">Amount</label>
+            <div class="col-md-5">
+                <input id="amount" name="amount" type="text" placeholder="Amount" [(ngModel)]="coupon.amount"
+                    class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="price">Price</label>
+            <div class="col-md-5">
+                <input id="price" name="price" type="text" placeholder="Price" [(ngModel)]="coupon.price"
+                    class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="category">Category</label>
+            <div class="col-md-5">
+                <select id="category" name="category" [(ngModel)]="coupon.category" class="form-control">
+                    <option value="FOOD">Food</option>
+                    <option value="ELECTRICITY">Electricity</option>
+                    <option value="RESTAURANT">Restaurant</option>
+                    <option value="VACATION">Vacation</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- File Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="image">Image</label>
+            <div class="col-md-4">
+                <input id="image" name="image" [(ngModel)]="coupon.image" class="input-file" type="file">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit"></label>
+            <div class="col-md-4">
+                <button id="submit" (click)="addCoupon()" name="submit" class="btn btn-primary">Add Coupon</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

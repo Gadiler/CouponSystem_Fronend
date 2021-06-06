@@ -1,4 +1,54 @@
-<div>
+<ng-container *ngIf="coupons !==undefined && coupons.length>0 ; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+
+    <!-- Cards Start -->
+    <section class="details-card">
+        <div class="container" *ngFor="let p of coupons">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <!-- <img src="https://placeimg.com/380/230/nature" alt="Image"> -->
+                            <img src="{{p.image}}" alt="Image">
+                            <span style="margin: 5px">
+                                <button style="border:none;" (click)="addToCart(p);">
+                                    <h4>➕ to Cart</h4>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="card-desc">
+                            <h3>Coupon</h3>
+                            <p>{{p.title}}</p>
+                            <div class="dropdown-divider"></div>
+                            <p>{{p.description}}</p>
+                            <p>Start date at: {{p.startDate | date: 'dd MMMM yyyy'}}</p>
+                            <p>Expired at: {{p.endDate| date: 'dd MMMM yyyy'}}</p>
+                            <p>Amount: {{p.amount}}</p>
+                            <p>Price: {{p.price}} $</p>
+                            <a class="btn-card" routerLink="/coupon-details/{{p.id}}">Read</a>
+                            <!-- &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="deleteCouponAsAdmin(p);">Delete</a> -->
+                            &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="updateCouponAsAdmin(p);">Update</a>
+                            &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="deleteCouponAsCompany(p);">Delete</a>
+                            &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="updateCouponAsCompany(p);">Update</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Cards End -->
+
+    <!-- --------------------------------------------------------- -->
+
+
+
+    <!-- <div>
+    <p> Coupon-List is works</p>
     <table>
         <tr>
             <th>Add to Cart</th>
@@ -11,7 +61,7 @@
             <th>Image</th>
         </tr>
         <tr *ngFor="let p of coupons">
-            <td> <button (click)="addToCart(p);">Add to Cart</button></td>
+            <td> <button (click)="addToCart(p);">Add to Cart ➕ </button></td>
             <td>
                 <a routerLink="/coupon-details/{{p.id}}">{{p.title}}</a>
             </td>
@@ -25,4 +75,8 @@
             </td>
         </tr>
     </table>
-</div>
+</div> -->
+</ng-template>
+<ng-template #elseTemplate>
+    <app-empty-view msg="No Coupon in here!"></app-empty-view>
+</ng-template>

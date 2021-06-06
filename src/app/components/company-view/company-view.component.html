@@ -1,31 +1,31 @@
-<div>
-    <p>Select the Product to DELETE</p>
-    <table>
-        <tr>
-            <th> Delete </th>
-            <th> Title </th>
-            <th> Description </th>
-            <th> Start date </th>
-            <th> End date </th>
-            <th> Amount </th>
-            <th> Price </th>
-            <th> Image </th>
-        </tr>
-        <tr *ngFor="let p of coupons" name="{p.id}">
-            <!-- <td> <input type="checkbox" name="myCheckbox" value="checked" (change)="$event ? selection.toggle(row) : null"></td> -->
-            <td> <button (click)="deleteCoupon(p.id!);">Delete</button></td>
-           <td>
-                <a routerLink="/coupon-details/{{p.id}}">{{p.title}}</a>
-            </td>
-            <td>{{p.description}}</td>
-            <td>{{p.startDate | date: 'dd MMMM yyyy'}}</td>
-            <td>{{p.endDate| date: 'dd MMMM yyyy'}}</td>
-            <td>{{p.amount}}</td>
-            <td>{{p.price}}</td>
-            <td>
-                <app-thumbnail imageSource="{{p.image}}"></app-thumbnail>
-            </td>
-        <!-- </tr> -->
-    </table>
-    <!-- <button (click)="deleteCoupons();">Delete</button> -->
-</div>
+<ul class="nav">
+    <li><a [ngClass]=" isCustomerView ? 'active' : 'inactive' "class="nav-link" (click)="isCustomersSelected()">My Customers</a></li>
+    &nbsp;
+    <li><a [ngClass]=" isCouponView ? 'active' : 'inactive' " class="nav-link" (click)="isCouponsSelected()" >Coupons 🎟️</a></li>  
+    &nbsp;
+    <li><a [ngClass]=" isAddCouponView ? 'active' : 'inactive' " class="nav-link" (click)="isAddCouponSelected()" >Add Coupon </a></li>  
+  </ul>
+  
+  <br>
+
+  <ng-container *ngIf="isCustomerView; then thenTemplate; else elseTemplate"></ng-container>
+  <ng-template #thenTemplate>
+      <app-customer-list [customers]="customers"></app-customer-list>
+
+  </ng-template>
+  <ng-template #elseTemplate>
+      <ng-container *ngIf="isCouponView; then thenTemplate2; else elseTemplate2"></ng-container>
+      <ng-template #thenTemplate2>
+        <app-coupons-list [isCompany]=true [coupons]=coupons></app-coupons-list>
+      </ng-template>
+      <ng-template #elseTemplate2>
+          <ng-container *ngIf="isAddCouponView; then thenTemplate3; else elseTemplate3"></ng-container>
+          <ng-template #thenTemplate3>
+              <app-add-coupon ></app-add-coupon>
+          </ng-template>
+          <ng-template #elseTemplate3>
+              
+          </ng-template>
+      </ng-template>
+  </ng-template>
+  

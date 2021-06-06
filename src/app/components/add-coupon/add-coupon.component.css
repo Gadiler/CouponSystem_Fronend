@@ -1,0 +1,14 @@
+input, button {
+    width: 300px;
+    font-size: x-large;
+}
+
+form{
+    height: 80%;
+    margin-top: 50px;
+    overflow-x: auto;
+    align-items: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}

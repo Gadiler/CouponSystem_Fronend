@@ -1,6 +1,6 @@
 .header{
     width: 100%;
-    height: 15%;
+    height: 10%;
     background-color: pink;
     color:white;
     display:flex;
@@ -11,7 +11,7 @@
   
   .footer{
     width: 100%;
-    height: 15%;
+    height: 5%;
     background-color: rgb(226, 174, 182);
     color:black;
     display:flex;
@@ -22,7 +22,8 @@
   
   .site{
     width: 100%;
-    height: 60%;
+    height: 78%;
+    /* background-color: rgb(235, 163, 175); */
     background-color: rgb(235, 163, 175);
     color:white;
     display:absolute;
@@ -37,7 +38,7 @@
   
   .info{
     width: 100%;
-    height: 10%;
+    height: 7%;
     background-color: rgb(187, 113, 125);
     color:white;
     display:flex;

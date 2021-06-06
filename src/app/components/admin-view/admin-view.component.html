@@ -1,128 +1,50 @@
-<p>admin-view works!</p>
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<div>
-  <table>
-    <tr>
-      <th>Add to Cart</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Amount</th>
-      <th>Price</th>
-      <th>Image</th>
-    </tr>
-    <tr *ngFor="let p of coupons">
-      <td> <button (click)="addToCart(p);">Add to Cart</button></td>
-      <td>
-        <a routerLink="/coupon-details/{{p.id}}">{{p.title}}</a>
-      </td>
-      <td>{{p.description}}</td>
-      <td>{{p.startDate | date: 'dd MMMM yyyy'}}</td>
-      <td>{{p.endDate| date: 'dd MMMM yyyy'}}</td>
-      <td>{{p.amount}}</td>
-      <td>{{p.price}}</td>
-      <td>
-        <app-thumbnail imageSource="{{p.image}}"></app-thumbnail>
-      </td>
-    </tr>
-  </table>
-</div>
+<ul class="nav">
+  <!--  -->
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit" ><i class="fa fa-search"></i></button>  
+  <!--  -->
+  <li><a [ngClass]=" isCompanyView ? 'active' : 'inactive' " class="nav-link"
+      (click)="isCompaniesSelected()">Companies</a></li>
+  &nbsp;
+  <li><a [ngClass]=" isCustomerView ? 'active' : 'inactive' " class="nav-link"
+      (click)="isCustomersSelected()">Customers</a></li>
+  &nbsp;
+  <li><a [ngClass]=" isCouponView ? 'active' : 'inactive' " class="nav-link" (click)="isCouponsSelected()">Coupons
+      🎟️</a></li>
+  &nbsp;
+  <li><a [ngClass]=" isCartView ? 'active' : 'inactive' " class="nav-link" (click)="isCartSelected()">My Cart 🛒</a>
+  </li>
 
+</ul>
 
-<hr>
+<br>
 
-
-<div class="companiesTable">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Coupons ID</th>
-      <th>Coupons Title</th>
-      <th>Coupons Price</th>
-    </tr>
-
-    <tr *ngFor="let c of companies">
-      <td>{{c.name}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.password}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.id}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.title}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.price}}</td>
-    </tr>
-  </table>
-</div>
-
-
-<hr>
-
-
-<div class="customersTable">
-  <table>
-    <tr>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Coupon</th>
-    </tr>
-
-    <tr *ngFor="let c of customers">
-      <td>{{c.firstName}}</td>
-      <td>{{c.lastName}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.password}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.id}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.title}}</td>
-      <td *ngFor="let coupon of c.coupons">{{coupon.price}}</td>
-    </tr>
-  </table>
-</div>
-
-
-
-
-
-
-
-
-<!--  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inicio <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Opcion 1</a>
-            </li>
-            <li><a href="#">Opcion 2</a>
-            </li>
-            <li><a href="#">Opcion 3</a>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#">Pagina 2</a>
-        </li>
-        <li><a href="#">Pagina 3</a>
-        </li>
-      </ul>
-    </div>
-    <!--/.nav-collapse -->
-<!-- </div> -->
-<!--/.container-fluid -->
-<!-- </nav> -->
+<ng-container *ngIf="isCompanyView ; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <app-companies [isAdmin]=true [companies]="companies"></app-companies>
+</ng-template>
+<ng-template #elseTemplate>
+  <ng-container *ngIf="isCouponView; then thenTemplate2; else elseTemplate2"></ng-container>
+  <ng-template #thenTemplate2>
+    <app-coupons-list [isAdmin]=true [coupons]=coupons></app-coupons-list>
+  </ng-template>
+  <ng-template #elseTemplate2>
+    <ng-container *ngIf="isCustomerView; then thenTemplate3; else elseTemplate3"></ng-container>
+    <ng-template #thenTemplate3>
+      <app-customer-list [isAdmin]=true [customers]=customers></app-customer-list>
+    </ng-template>
+    <ng-template #elseTemplate3>
+      <ng-container *ngIf="isCartView; then thenTemplate4; else elseTemplate4"></ng-container>
+      <ng-template #thenTemplate4>
+        <app-cart [coupons]=coupons></app-cart>
+      </ng-template>
+      <ng-template #elseTemplate4>
+        <app-home [coupons]=coupons></app-home>
+      </ng-template>
+    </ng-template>
+  </ng-template>
+</ng-template>

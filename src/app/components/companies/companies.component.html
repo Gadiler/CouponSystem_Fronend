@@ -1,21 +1,69 @@
-<div >
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Coupons ID</th>
-            <th>Coupons Title</th>
-            <th>Coupons Price</th>
-        </tr>
+<ng-container *ngIf="companies !== undefined && companies.length>0; then thenTemplate; else elseTemplate">
+</ng-container>
+<ng-template #thenTemplate>
+    <!-- Cards Start -->
+    <section class="details-card">
+        <div class="container" *ngFor="let p of companies">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-content">
+                        <div class="card-img">
+                            <img src="https://placeimg.com/380/230/nature" alt="Image">
+                            <span>
+                                <h4>heading</h4>
+                            </span>
+                        </div>
+                        <div class="card-desc">
+                            <h3>Company</h3>
+                            <p>Company Name: {{p.name}}</p>
+                            <div class="dropdown-divider"></div>
+                            <p>Email: {{p.email}}</p>
+                            <p>Password: {{p.password}}</p>
+                            <div class="dropdown-divider"></div>
+                            <div *ngFor="let c of p.coupons">
+                                <p>Coupon's Title: {{c.title}}</p>
+                                <p>Coupon's Description: {{c.description}}</p>
+                            </div>
+                            <a class="btn-card">Read</a>
+                            &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="deleteCompanyAsAdmin(p);">Delete</a>
+                            &nbsp;&nbsp;
+                            <a class="btn-card" *ngIf="isAdmin" (click)="updateCompanyAsAdmin(p);">Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Cards End -->
 
-        <tr *ngFor="let c of companies">
-            <td>{{c.name}}</td>
-            <td>{{c.email}}</td>
-            <td>{{c.password}}</td>
-            <td *ngFor="let coupon of c.coupons">{{coupon.id}}</td>
-            <td *ngFor="let coupon of c.coupons">{{coupon.title}}</td>
-            <td *ngFor="let coupon of c.coupons">{{coupon.price}}</td>
-        </tr>
-    </table>
-</div>
+
+    <!-- -------------------------------------------------------------------- -->
+
+
+
+
+
+
+    <!-- <div >
+        <p> Company-List is works</p>
+        <table >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+    
+            <tr *ngFor="let c of companies">
+                <td>{{c.id}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.email}}</td>
+                <td>{{c.password}}</td>
+            </tr>
+        </table>
+    </div> -->
+</ng-template>
+<ng-template #elseTemplate>
+    <app-empty-view msg="No Companies in here!"></app-empty-view>
+</ng-template>

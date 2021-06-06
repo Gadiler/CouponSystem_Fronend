@@ -18,6 +18,9 @@ import { CouponComponent } from './components/coupon/coupon.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CouponsListComponent } from './components/coupons-list/coupons-list.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { EmptyViewComponent } from './components/empty-view/empty-view.component';
+import { AddCouponComponent } from './components/add-coupon/add-coupon.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { CartComponent } from './components/cart/cart.component';
     CouponComponent,
     CompaniesComponent,
     CouponsListComponent,
-    CartComponent
+    CartComponent,
+    CustomerListComponent,
+    EmptyViewComponent,
+    AddCouponComponent
   ],
   imports: [
     BrowserModule,

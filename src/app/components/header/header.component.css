@@ -1,0 +1,13 @@
+.login-logout{
+    position: absolute;
+    top:15px;
+    right:10px;
+    margin: 5px;
+    justify-content:flex-end;
+    align-items:center;
+    display:flex;
+  }
+
+  /* .out{
+ 
+  } */

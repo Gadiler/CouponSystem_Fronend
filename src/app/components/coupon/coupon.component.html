@@ -1,16 +1,73 @@
-<div>
-    <h3> Company ID: {{coupon.companyId}}</h3>
-    <h3> Category: {{coupon.category}}</h3>
-    <h3> Title: {{coupon.title}}</h3>
-    <h3> Description: {{coupon.description}}</h3>
-    <h3> Start Date: {{coupon.startDate | date: 'dd MMMM yyyy'}}</h3>
-    <h3> Expired Date: {{coupon.endDate | date: 'dd MMMM yyyy'}}</h3>
-    <h3> Amount: {{coupon.amount}}</h3>
-    <h3> Price: {{coupon.price}}</h3>
-    <img src="{{coupon.image}}">
+<ng-container *ngIf="coupon !== undefined ; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
 
-    <br>
-    <br>
 
-    <a routerLink="/products">Back to List</a>
-</div>
+    <div class="card">
+        <img src="{{coupon.image}}" alt="image" />
+        <h1>Coupon</h1>
+
+        <table>
+            <tr>
+                <td><strong>Company ID</strong></td>
+                <td>{{coupon.companyId}}</td>
+            </tr>
+            <tr>
+                <td><strong>Category</strong></td>
+                <td> {{coupon.category}} </td>
+            </tr>
+            <tr>
+                <td><strong>Title</strong></td>
+                <td> {{coupon.title}} </td>
+            </tr>
+            <tr>
+                <td><strong>Start Date</strong></td>
+                <td> {{coupon.startDate | date: 'dd MMMM yyyy'}} </td>
+            </tr>
+            <tr>
+                <td><strong>Expired Date</strong></td>
+                <td> {{coupon.endDate | date: 'dd MMMM yyyy'}} </td>
+            </tr>
+            <tr>
+                <td><strong>Amount</strong></td>
+                <td>{{coupon.amount}}</td>
+            </tr>
+            <tr>
+                <td><strong>Price</strong></td>
+                <td> {{coupon.price}} </td>
+            </tr>
+        </table>
+        <a routerLink="/home">Home ↩️</a>
+        <!-- <div class="social">
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+        </div> -->
+    </div>
+
+
+
+
+
+    <!-- -------------------------------------------------------------------- -->
+    <!-- <div>
+        <h3> Company ID: {{coupon.companyId}}</h3>
+        <h3> Category: {{coupon.category}}</h3>
+        <h3> Title: {{coupon.title}}</h3>
+        <h3> Description: {{coupon.description}}</h3>
+        <h3> Start Date: {{coupon.startDate | date: 'dd MMMM yyyy'}}</h3>
+        <h3> Expired Date: {{coupon.endDate | date: 'dd MMMM yyyy'}}</h3>
+        <h3> Amount: {{coupon.amount}}</h3>
+        <h3> Price: {{coupon.price}}</h3>
+        <img src="{{coupon.image}}">
+    
+        <br>
+        <br>
+    
+        <a routerLink="/products">Back to List</a>
+    </div> -->
+</ng-template>
+<ng-template #elseTemplate>
+    <app-empty-view msg="Sorry mister! No have"></app-empty-view>
+</ng-template>
